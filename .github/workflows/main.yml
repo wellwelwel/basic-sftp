@@ -24,7 +24,7 @@ jobs:
               node-version: '18'
 
          - name: 🧪 Testing Services
-           run: npm run tests
+           run: npm i --ignore-scripts && npm run tests
            env:
               HOST: ${{ secrets.HOST }}
               PORT: ${{ secrets.PORT }}
