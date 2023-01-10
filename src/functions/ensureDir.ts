@@ -1,48 +1,35 @@
 import { SFTP } from '../ssh2.js';
+import stat from '../helpers/stat.js';
 
 const ensureDir = (path: string): Promise<true> =>
    new Promise(async (resolve, reject) => {
-      let currentDir = '';
-
       try {
-         const sftp = await SFTP();
+         const dirs = [];
          const paths = path.split('/');
+         const sftp = await SFTP();
 
          for (const dir of paths) {
-            currentDir += dir;
+            dirs.push(dir);
 
-            if (currentDir?.trim().length === 0) continue;
+            const currentDir = dirs.join('/');
 
-            await new Promise((resolve, reject) => {
-               sftp.lstat(currentDir, (err, stat) => {
-                  if (err?.message && /No\ssuch\sfile/.test(err?.message)) {
-                     sftp.mkdir(currentDir, (err) => {
-                        if (err) {
-                           reject(err);
-                           return;
-                        }
+            if (currentDir.trim().length === 0 || currentDir === '/') continue;
 
-                        currentDir += '/';
-                        resolve(true);
-                     });
+            const currentPathStat = await stat(currentDir, sftp);
 
-                     return;
-                  }
+            if (currentPathStat === 'Directory') continue;
 
-                  if (stat.isFile()) {
-                     reject(`The path "${currentDir}" exists, but is not a directory`);
-                     return;
-                  }
-
-                  if (stat.isDirectory()) {
-                     currentDir += '/';
-                     resolve(true);
-                     return;
-                  }
-
-                  reject(err);
+            if (currentPathStat === null)
+               await new Promise(() => {
+                  sftp.mkdir(currentDir, (err) => {
+                     err ? reject(err) : resolve(true);
+                  });
                });
-            });
+
+            if (currentPathStat === 'File') {
+               reject(new Error(`The path "${currentDir}" exists, but is not a directory`));
+               return;
+            }
          }
 
          resolve(true);
