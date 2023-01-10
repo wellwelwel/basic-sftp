@@ -21,7 +21,7 @@ jobs:
          - name: ➕ Actions - Setup NodeJS
            uses: actions/setup-node@v3
            with:
-              node-version: 'lts'
+              node-version: '18.x'
 
          - name: 🧪 Testing Services
            run: npm i --ignore-scripts && npm run tests
