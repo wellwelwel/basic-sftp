@@ -9,8 +9,8 @@ const { HOST: host, PORT: port, USERNAME: username, PASSWORD: password } = proce
 const sftp = new Client();
 await sftp.connect({ host, port, username, password });
 
-log('readdir');
-const dirs = await sftp.readdir(`/${username}/sftp-test`);
+log('ls');
+const dirs = await sftp.ls(`/${username}/sftp-test`);
 
 await sftp.end();
 

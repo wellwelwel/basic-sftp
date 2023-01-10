@@ -44,7 +44,7 @@ export const Client = class {
 
    getConnection = async () => await SFTP();
 
-   readdir = (location: string | Buffer): Promise<FileEntry[]> =>
+   ls = (location: string | Buffer): Promise<FileEntry[]> =>
       new Promise(async (resolve, reject) => {
          try {
             const sftp = await SFTP();
