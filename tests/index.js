@@ -10,8 +10,9 @@ const sftp = new Client();
 await sftp.connect({ host, port, username, password });
 
 log('ls');
-const dirs = await sftp.ls(`/${username}/sftp-test`);
+console.log((await sftp.ls(`/${username}/sftp-test`)).map((dir) => dir.filename));
+
+log('ensureDir');
+console.log(await sftp.ensureDir(`/${username}/sftp-test/sub1/sub2/sub3`));
 
 await sftp.end();
-
-console.log(dirs.map((dir) => dir.filename));
