@@ -1,0 +1,33 @@
+name: 🔬
+on:
+   push:
+      branches:
+         - '*'
+         - '!test-ci'
+      paths-ignore:
+         - '**.md'
+         - '.gitignore'
+         - '.github/assets/**/**'
+         - 'docs/**'
+         - 'LICENSE'
+jobs:
+   test-services:
+      runs-on: ubuntu-latest
+      strategy:
+      if: ${{ !startsWith(github.event.head_commit.message, 'no-ci') }}
+      steps:
+         - name: ➕ Actions - Checkout
+           uses: actions/checkout@v3
+
+         - name: ➕ Actions - Setup NodeJS
+           uses: actions/setup-node@v3
+           with:
+              node-version: '18'
+
+         - name: 🧪 Testing Services
+           run: npm run test-services
+           env:
+              HOST: ${{ secrets.HOST }}
+              PORT: ${{ secrets.PORT }}
+              USERNAME: ${{ secrets.USERNAME }}
+              PASSWORD: ${{ secrets.PASSWORD }}
