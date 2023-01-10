@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Client } from 'basic-sftp';
 
-const { host, port, username, password } = process.env;
+const { HOST: host, PORT: port, USERNAME: username, PASSWORD: password } = process.env;
 const sftp = new Client();
 await sftp.connect({ host, port, username, password });
 
