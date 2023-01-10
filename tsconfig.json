@@ -1,0 +1,28 @@
+{
+   "include": ["src"],
+   "exclude": ["node_modules"],
+   "compilerOptions": {
+      "target": "ES2016",
+      "module": "CommonJS",
+      "moduleResolution": "Node",
+
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+
+      "allowJs": false,
+      "strict": true,
+      "alwaysStrict": true,
+      "strictFunctionTypes": false,
+      "noUnusedLocals": true,
+      "noImplicitAny": true,
+
+      "removeComments": false,
+      "sourceMap": false,
+      "declaration": true,
+
+      "outDir": "./lib",
+      "declarationDir": "./lib"
+   }
+}

@@ -1,0 +1,12 @@
+{
+   "dependencies": {
+      "basic-sftp": "file:../.."
+   },
+   "scripts": {
+      "reset": "rm -rf ./node_modules ./package-lock.json; npm i --ignore-scripts --silent; node ./"
+   },
+   "type": "module",
+   "devDependencies": {
+      "dotenv": "^16.0.3"
+   }
+}

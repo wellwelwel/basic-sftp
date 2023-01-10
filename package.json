@@ -1,0 +1,45 @@
+{
+   "name": "basic-sftp",
+   "main": "./lib/index.js",
+   "version": "0.1.0",
+   "scripts": {
+      "build": "npx tsc;",
+      "init": "npm i --ignore-scripts;",
+      "init:update": "npm run init; npm run update;",
+      "update": "npx npu; npm i --ignore-scripts; npm audit fix;",
+      "update:patch": "npm run update; npm version patch --no-git-tag-version;",
+      "update:minor": "npm run update; npm version minor --no-git-tag-version;",
+      "update:major": "npm run update; npm version major --no-git-tag-version;",
+      "test:cjs": "echo \"➜ CJS\"; cd \"./tests/cjs\" && npm run reset;",
+      "test:esm": "echo \"➜ ESM\"; cd \"./tests/esm\" && npm run reset;",
+      "tests": "npm run test:cjs; npm run test:esm;"
+   },
+   "dependencies": {
+      "ssh2": "^1.11.0"
+   },
+   "devDependencies": {
+      "@types/ssh2": "^1.11.6",
+      "packages-update": "^1.2.1",
+      "prettier": "^2.8.2",
+      "typescript": "^4.9.4"
+   },
+   "license": "MIT",
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/wellwelwel/sftp-promise.git"
+   },
+   "keywords": [],
+   "author": "https://github.com/wellwelwel",
+   "bugs": {
+      "url": "https://github.com/wellwelwel/sftp-promise/issues"
+   },
+   "homepage": "https://github.com/wellwelwel/sftp-promise#readme",
+   "description": "🤹🏻‍♀️",
+   "engines": {
+      "node": ">=14.18.0 || >=16.0.0",
+      "npm": ">=7.0.2"
+   },
+   "files": [
+      "lib"
+   ]
+}
