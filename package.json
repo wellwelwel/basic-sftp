@@ -10,9 +10,7 @@
       "update:patch": "npm run update; npm version patch --no-git-tag-version;",
       "update:minor": "npm run update; npm version minor --no-git-tag-version;",
       "update:major": "npm run update; npm version major --no-git-tag-version;",
-      "test:cjs": "echo \"➜ CJS\"; cd \"./tests/cjs\" && npm run reset;",
-      "test:esm": "echo \"➜ ESM\"; cd \"./tests/esm\" && npm run reset;",
-      "tests": "npm run test:cjs; npm run test:esm;"
+      "tests": "npm run build && cd \"./tests\" && npm run reset;"
    },
    "dependencies": {
       "ssh2": "^1.11.0"
@@ -28,13 +26,21 @@
       "type": "git",
       "url": "git+https://github.com/wellwelwel/sftp-promise.git"
    },
-   "keywords": [],
+   "keywords": [
+      "sftp",
+      "client",
+      "upload",
+      "download",
+      "promise",
+      "promises",
+      "remote"
+   ],
    "author": "https://github.com/wellwelwel",
    "bugs": {
       "url": "https://github.com/wellwelwel/sftp-promise/issues"
    },
    "homepage": "https://github.com/wellwelwel/sftp-promise#readme",
-   "description": "🤹🏻‍♀️",
+   "description": "🤹🏻‍♀️ A basic promise-based SFTP Client",
    "engines": {
       "node": ">=14.18.0 || >=16.0.0",
       "npm": ">=7.0.2"

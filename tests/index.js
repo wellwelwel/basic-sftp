@@ -1,11 +1,13 @@
-import { config } from 'dotenv';
+import 'dotenv/config';
 import { Client } from 'basic-sftp';
 
-config({ path: '../../.env' });
 const { host, port, username, password } = process.env;
 const sftp = new Client();
 await sftp.connect({ host, port, username, password });
-const dirs = (await sftp.readdir(`/${username}/sftp-test`)).map((dir) => dir.filename);
+
+// readdir
+const dirs = await sftp.readdir(`/${username}/sftp-test`);
+
 await sftp.end();
 
-console.log(dirs);
+console.log(dirs.map((dir) => dir.filename));
