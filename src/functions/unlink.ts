@@ -4,7 +4,7 @@ import ls from './ls.js';
 import removeFile from '../helpers/removeFile.js';
 import removeDir from '../helpers/removeDir.js';
 
-const unlink = (path: string): Promise<any> =>
+const unlink = (path: string): Promise<true> =>
    new Promise(async (resolve, reject) => {
       try {
          const sftp = await SFTP();
