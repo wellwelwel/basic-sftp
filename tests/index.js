@@ -6,13 +6,19 @@ const log = (testing) => {
 };
 
 const { HOST: host, PORT: port, USERNAME: username, PASSWORD: password } = process.env;
+const root = `/${username}/sftp-test`;
 const sftp = new Client();
 await sftp.connect({ host, port, username, password });
 
 log('ls');
-console.log((await sftp.ls(`/${username}/sftp-test`)).map((dir) => dir.filename));
+console.log((await sftp.ls(root)).map((dir) => dir.filename));
 
 log('ensureDir');
-console.log(await sftp.ensureDir(`/${username}/sftp-test/sub1/sub2/sub3`));
+console.log(await sftp.ensureDir(`${root}/sub1/sub2/sub3`));
+
+log('is');
+console.log(await sftp.is(`${root}/hi.curious`));
+console.log(await sftp.is(`${root}/sub1`));
+console.log(await sftp.is(`${root}/not_exists`));
 
 await sftp.end();

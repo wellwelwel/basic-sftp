@@ -1,8 +1,9 @@
 import { getConnection } from './ssh2.js';
-import ls from './functions/ls.js';
-import ensureDir from './functions/ensureDir.js';
 import connect from './functions/connect.js';
 import end from './functions/end.js';
+import ls from './functions/ls.js';
+import ensureDir from './functions/ensureDir.js';
+import is from './functions/is.js';
 
 export const Client = class {
    /** Establishes the connection */
@@ -15,4 +16,6 @@ export const Client = class {
    ls = ls;
    /** Creates the path recursively, if it does not exist */
    ensureDir = ensureDir;
+   /** Get the type from path: File | Directory | null */
+   is = is;
 };
