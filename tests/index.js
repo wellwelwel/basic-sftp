@@ -1,11 +1,15 @@
 import 'dotenv/config';
 import { Client } from 'basic-sftp';
 
+const log = (testing) => {
+   console.log(`\x1b[1m\x1b[34m➜\x1b[0m \x1b[1m${testing}\x1b[0m`);
+};
+
 const { HOST: host, PORT: port, USERNAME: username, PASSWORD: password } = process.env;
 const sftp = new Client();
 await sftp.connect({ host, port, username, password });
 
-// readdir
+log('readdir');
 const dirs = await sftp.readdir(`/${username}/sftp-test`);
 
 await sftp.end();
