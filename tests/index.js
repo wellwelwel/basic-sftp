@@ -21,4 +21,7 @@ console.log(await sftp.is(`${root}/hi.curious`));
 console.log(await sftp.is(`${root}/sub1`));
 console.log(await sftp.is(`${root}/not_exists`));
 
+log('unlink');
+console.log(await sftp.unlink(`${root}/sub1`));
+
 await sftp.end();
