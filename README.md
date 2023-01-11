@@ -40,7 +40,7 @@ await sftp.connect({
 });
 ```
 
--  The connection extends all the [`ssh2`](https://github.com/mscdex/ssh2) options
+-  The connection access extends all the [`ssh2`](https://github.com/mscdex/ssh2) options
 
 #### Reconnect
 
