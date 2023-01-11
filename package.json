@@ -3,7 +3,7 @@
    "main": "./lib/index.js",
    "version": "0.1.0",
    "scripts": {
-      "build": "npx tsc;",
+      "build": "rm -rf ./lib; npx tsc;",
       "init": "npm i --ignore-scripts;",
       "init:update": "npm run init; npm run update;",
       "update": "npx npu; npm i --ignore-scripts; npm audit fix;",
