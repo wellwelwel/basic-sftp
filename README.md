@@ -91,7 +91,7 @@ await sftp.end();
 -  Uploads a local file to the remote server
 
    ```javascript
-   await sftp.uploadFile(path);
+   await sftp.uploadFile(localPath, remotePath);
    ```
 
 #### unlink
