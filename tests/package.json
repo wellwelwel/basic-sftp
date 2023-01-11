@@ -3,7 +3,7 @@
       "basic-sftp": "file:.."
    },
    "scripts": {
-      "reset": "rm -rf ./node_modules ./package-lock.json; npm i --ignore-scripts --silent; node ./"
+      "reset": "rm -rf ./node_modules ./package-lock.json ./download.bak; npm i --ignore-scripts --silent; node ./"
    },
    "type": "module",
    "devDependencies": {

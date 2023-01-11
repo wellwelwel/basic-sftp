@@ -117,9 +117,9 @@ await sftp.end();
    -  [x] [`is`](./src/functions/is.ts)
    -  [x] [`ensureDir`](./src/functions/ensureDir.ts)
    -  [x] [`unlink`](./src/functions/unlink.ts)
-   -  [x] [`uploadFile`](./src/functions/upload.ts)
+   -  [x] [`uploadFile`](./src/functions/uploadFile.ts)
+   -  [x] [`downloadFile`](./src/functions/downloadFile.ts)
    -  [ ] `uploadDir`
-   -  [ ] `downloadFile`
    -  [ ] `downloadDir`
 
 <hr />

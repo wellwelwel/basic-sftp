@@ -6,6 +6,7 @@ import ensureDir from './functions/ensureDir.js';
 import is from './functions/is.js';
 import uploadFile from './functions/uploadFile.js';
 import unlink from './functions/unlink.js';
+import downloadFile from './functions/downloadFile.js';
 
 export const Client = class {
    /** Establishes the connection */
@@ -24,6 +25,8 @@ export const Client = class {
    ensureDir = ensureDir;
    /** Uploads a local file to the remote server */
    uploadFile = uploadFile;
+   /** Downloads a remote file to the local workspace */
+   downloadFile = downloadFile;
    /** Remove all files and directories from a directory, including the directory itself, if it exists */
    unlink = unlink;
 };

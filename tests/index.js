@@ -26,6 +26,9 @@ log([await sftp.is(`${root}/hi.curious`), await sftp.is(`${root}/sub1`), await s
 log('uploadFile', 'mtd');
 log(await sftp.uploadFile('./upload.bak', `${root}/sub1/sub2-2/upload.bak`));
 
+log('downloadFile', 'mtd');
+log(await sftp.downloadFile(`${root}/sub1/sub2-2/upload.bak`, './download.bak'));
+
 log('unlink', 'mtd');
 log(await sftp.unlink(`${root}/sub1`));
 
