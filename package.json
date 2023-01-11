@@ -24,7 +24,7 @@
    "license": "MIT",
    "repository": {
       "type": "git",
-      "url": "git+https://github.com/wellwelwel/sftp-promise.git"
+      "url": "git+https://github.com/wellwelwel/basic-sftp.git"
    },
    "keywords": [
       "sftp",
@@ -37,9 +37,9 @@
    ],
    "author": "https://github.com/wellwelwel",
    "bugs": {
-      "url": "https://github.com/wellwelwel/sftp-promise/issues"
+      "url": "https://github.com/wellwelwel/basic-sftp/issues"
    },
-   "homepage": "https://github.com/wellwelwel/sftp-promise#readme",
+   "homepage": "https://github.com/wellwelwel/basic-sftp#readme",
    "description": "🤹🏻‍♀️ A basic promise-based SFTP Client",
    "engines": {
       "node": ">=14.18.0 || >=16.0.0",
