@@ -78,13 +78,13 @@ await sftp.end();
 
 -  Get the type from path: `File | Directory | null`
 
-   -  `File` means that the remote path is a **file**
-   -  `Directory` means that the remote path is a **directory**
-   -  `null` means that the remote path **doesn't exist**
-
    ```javascript
    await sftp.is(path);
    ```
+
+   -  `File` means that the remote path is a **file**
+   -  `Directory` means that the remote path is a **directory**
+   -  `null` means that the remote path **doesn't exist**
 
 #### uploadFile
 
