@@ -8,7 +8,7 @@ const log = (/** @type {any} */ toLog, /** @type {"mtd" | "std"} */ type = 'std'
 };
 
 const { HOST: host, PORT: port, USERNAME: username, PASSWORD: password } = process.env;
-const root = `/${username}/sftp-test`;
+const root = '/github-actions/basic-sftp';
 const sftp = new Client();
 
 log('connect', 'mtd');
