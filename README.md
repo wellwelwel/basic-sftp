@@ -66,14 +66,6 @@ await sftp.end();
    await sftp.ls(path);
    ```
 
-#### ensureDir
-
--  Creates the path recursively, if it does not exist
-
-   ```javascript
-   await sftp.ensureDir(path);
-   ```
-
 #### is
 
 -  Get the type from path: `File | Directory | null`
@@ -85,6 +77,14 @@ await sftp.end();
    -  `File` means that the remote path is a **file**
    -  `Directory` means that the remote path is a **directory**
    -  `null` means that the remote path **doesn't exist**
+
+#### ensureDir
+
+-  Creates the path recursively, if it does not exist
+
+   ```javascript
+   await sftp.ensureDir(path);
+   ```
 
 #### uploadFile
 
@@ -129,5 +129,3 @@ await sftp.end();
 | Contributions | GitHub                                                                             |
 | ------------- | ---------------------------------------------------------------------------------- |
 | Author        | [![wellwelwel](./.github/assets/readme/author.svg)](https://github.com/wellwelwel) |
-
-<hr />
