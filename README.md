@@ -22,7 +22,7 @@
 -  CommonJS
 
    ```javascript
-   const { Client } = require('basic-ftp');
+   const { Client } = require('basic-sftp');
    ```
 
 <hr />
