@@ -1,3 +1,5 @@
+// @ts-check
+
 import 'dotenv/config';
 import { Client } from 'basic-sftp';
 
@@ -10,7 +12,7 @@ const root = `/${username}/sftp-test`;
 const sftp = new Client();
 
 log('connect', 'mtd');
-log(await sftp.connect({ host, port, username, password }));
+log(await sftp.connect({ host, port: port ? +port : 22, username, password }));
 
 log('ls', 'mtd');
 log((await sftp.ls(root)).map((dir) => dir.filename));
@@ -21,8 +23,8 @@ log(await sftp.ensureDir(`${root}/sub1/sub2/sub3`));
 log('is', 'mtd');
 log([await sftp.is(`${root}/hi.curious`), await sftp.is(`${root}/sub1`), await sftp.is(`${root}/not_exists`)]);
 
-log('upload', 'mtd');
-log(await sftp.upload('./upload.bak', `${root}/sub1/sub2-2/upload.bak`));
+log('uploadFile', 'mtd');
+log(await sftp.uploadFile('./upload.bak', `${root}/sub1/sub2-2/upload.bak`));
 
 log('unlink', 'mtd');
 log(await sftp.unlink(`${root}/sub1`));

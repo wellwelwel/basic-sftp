@@ -1,11 +1,10 @@
-import { SFTP as sftp } from '../functions/connect';
+import { SFTP as sftp } from './connect';
 import ensureDir from './ensureDir.js';
 import { dirname, resolve as pathResolve } from 'path';
 
-const upload = (localPath: string, remotePath: string): Promise<true> =>
+const uploadFile = (localPath: string, remotePath: string): Promise<true> =>
    new Promise(async (resolve, reject) => {
       try {
-         // Check local path fisrt
          const resolvedPath = pathResolve(localPath);
 
          await ensureDir(dirname(remotePath));
@@ -18,4 +17,4 @@ const upload = (localPath: string, remotePath: string): Promise<true> =>
       }
    });
 
-export default upload;
+export default uploadFile;
