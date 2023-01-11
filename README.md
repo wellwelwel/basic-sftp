@@ -94,6 +94,14 @@ await sftp.end();
    await sftp.uploadFile(localPath, remotePath);
    ```
 
+#### downloadFile
+
+-  Downloads a remote file to the local workspace
+
+   ```javascript
+   await sftp.downloadFile(remotePath, localPath);
+   ```
+
 #### unlink
 
 -  Remove all files and directories from a directory, including the directory itself, if it exists
