@@ -1,5 +1,9 @@
-import { ConnectConfig } from 'ssh2';
-import { SFTP, ssh2 } from '../ssh2.js';
+import { ConnectConfig, SFTPWrapper } from 'ssh2';
+import { ssh2 } from '../ssh2.js';
+
+let cachedAccess: ConnectConfig;
+
+export let SFTP: SFTPWrapper;
 
 const connect = (access: ConnectConfig): Promise<true> =>
    new Promise((resolve, reject) => {
@@ -9,13 +13,22 @@ const connect = (access: ConnectConfig): Promise<true> =>
                reject(err);
             })
             .on('ready', async () => {
-               await SFTP();
-               resolve(true);
+               ssh2.sftp((err, sftp) => {
+                  if (err) reject(err);
+                  else {
+                     cachedAccess = Object.assign({}, access);
+                     SFTP = sftp;
+
+                     resolve(true);
+                  }
+               });
             })
             .connect(access);
       } catch (error) {
          reject(error);
       }
    });
+
+export const reconnect = async () => await connect(cachedAccess);
 
 export default connect;

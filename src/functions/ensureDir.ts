@@ -1,12 +1,11 @@
-import { SFTP } from '../ssh2.js';
-import stat from '../helpers/stat.js';
+import { SFTP as sftp } from '../functions/connect';
+import is from './is.js';
 
 const ensureDir = (path: string): Promise<true> =>
    new Promise(async (resolve, reject) => {
       try {
          const dirs = [];
          const paths = path.split('/');
-         const sftp = await SFTP();
 
          for (const dir of paths) {
             dirs.push(dir);
@@ -15,7 +14,7 @@ const ensureDir = (path: string): Promise<true> =>
 
             if (currentDir.trim().length === 0 || currentDir === '/') continue;
 
-            const currentPathStat = await stat(currentDir, sftp);
+            const currentPathStat = await is(currentDir);
 
             if (currentPathStat === 'Directory') continue;
 

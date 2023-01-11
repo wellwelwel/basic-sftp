@@ -1,17 +1,6 @@
-import { Client, SFTPWrapper } from 'ssh2';
+import { Client } from 'ssh2';
+import { SFTP } from './functions/connect';
 
 export const ssh2 = new Client();
 
-export const SFTP = (): Promise<SFTPWrapper> =>
-   new Promise((resolve, reject) => {
-      try {
-         ssh2.sftp((err, sftp) => {
-            if (err) reject(err);
-            else resolve(sftp);
-         });
-      } catch (error) {
-         reject(error);
-      }
-   });
-
-export const getConnection = async () => await SFTP();
+export const getConnection = () => SFTP;

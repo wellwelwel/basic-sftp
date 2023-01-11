@@ -1,11 +1,9 @@
 import { FileEntry } from 'ssh2';
-import { SFTP } from '../ssh2.js';
+import { SFTP as sftp } from '../functions/connect';
 
 const ls = (location: string | Buffer): Promise<FileEntry[]> =>
    new Promise(async (resolve, reject) => {
       try {
-         const sftp = await SFTP();
-
          sftp.readdir(location, (err, list) => {
             err ? reject(err) : resolve(list);
          });

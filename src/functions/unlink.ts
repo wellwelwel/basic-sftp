@@ -1,15 +1,12 @@
-import stat from '../helpers/stat.js';
-import { SFTP } from '../ssh2.js';
 import ls from './ls.js';
 import removeFile from '../helpers/removeFile.js';
 import removeDir from '../helpers/removeDir.js';
+import is from './is.js';
 
 const unlink = (path: string): Promise<true> =>
    new Promise(async (resolve, reject) => {
       try {
-         const sftp = await SFTP();
-
-         const pathIs = await stat(path, sftp);
+         const pathIs = await is(path);
 
          if (pathIs === null) {
             resolve(true);
@@ -17,7 +14,7 @@ const unlink = (path: string): Promise<true> =>
          }
 
          if (pathIs === 'File') {
-            resolve(await removeFile(path, sftp));
+            resolve(await removeFile(path));
             return;
          }
 
@@ -25,22 +22,22 @@ const unlink = (path: string): Promise<true> =>
             const pathContents = (await ls(path)).map((content) => content.filename);
 
             if (pathContents.length === 0) {
-               resolve(await removeDir(path, sftp));
+               resolve(await removeDir(path));
                return;
             }
 
             for (const contentName of pathContents) {
                const contentPath = `${path}/${contentName}`;
-               const contentIs = await stat(contentPath, sftp);
+               const contentIs = await is(contentPath);
 
                if (contentIs === null) continue;
 
-               contentIs === 'File' ? await removeFile(contentPath, sftp) : await unlink(contentPath);
+               contentIs === 'File' ? await removeFile(contentPath) : await unlink(contentPath);
             }
          }
 
-         const confirmPathIs = await stat(path, sftp);
-         resolve(confirmPathIs === null ? true : await removeDir(path, sftp));
+         const confirmPathIs = await is(path);
+         resolve(confirmPathIs === null ? true : await removeDir(path));
       } catch (error) {
          reject(error);
       }
