@@ -1,7 +1,7 @@
 {
    "name": "basic-sftp",
    "main": "./lib/index.js",
-   "version": "0.1.1",
+   "version": "0.1.2",
    "scripts": {
       "build": "rm -rf ./lib; npx tsc;",
       "init": "npm i --ignore-scripts;",
