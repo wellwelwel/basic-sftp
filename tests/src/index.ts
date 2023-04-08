@@ -24,7 +24,7 @@ log('ls', 'mtd');
 log((await sftp.ls(root)).map((dir) => dir.filename));
 
 log('downloadFile', 'mtd');
-log(await sftp.downloadFile(`${root}/sub/upload.bak`, resolve('download.bak')));
+log(await sftp.downloadFile(`${root}/sub/upload.bak`, resolve('lib/download.bak')));
 
 log('unlink', 'mtd');
 log(await sftp.unlink(`${root}/sub`));
