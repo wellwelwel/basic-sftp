@@ -10,15 +10,16 @@
       "update:patch": "npm run update; npm version patch --no-git-tag-version;",
       "update:minor": "npm run update; npm version minor --no-git-tag-version;",
       "update:major": "npm run update; npm version major --no-git-tag-version;",
-      "tests": "npm run build && cd \"./tests\" && npm run reset;"
+      "pretests": "docker run -d --name test-sftp --privileged -p 2222:2222 -e PORT=2222 --restart always wellwelwel/vps:latest",
+      "tests": "npm run build && cd ./tests && rm -rf ./lib; npx tsc -p ./tsconfig.json && node ./lib;",
+      "posttests": "cd ./tests && rm -rf ./lib; docker stop test-sftp; docker rm test-sftp"
    },
    "dependencies": {
+      "@types/ssh2": "^1.11.7",
       "ssh2": "^1.11.0"
    },
    "devDependencies": {
-      "@types/ssh2": "^1.11.6",
       "packages-update": "^1.2.1",
-      "prettier": "^2.8.2",
       "typescript": "^4.9.4"
    },
    "license": "MIT",
